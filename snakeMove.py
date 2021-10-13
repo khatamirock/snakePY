@@ -15,6 +15,7 @@ class Snake:
         self.crate()
         # self.ls.reverse()
         self.head=self.snls[0]
+        self.head.color('red')
     
     def crate(self):
         for x in self.ls:
@@ -38,7 +39,7 @@ class Snake:
         #     self.snls[xs].goto(xc,yc)
 
         self.head.forward(20)
-        self.head.color('red')
+        
       
     def up(self):
         if self.head.heading()!=DOWN:

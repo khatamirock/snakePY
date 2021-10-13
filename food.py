@@ -13,7 +13,7 @@ class Food(Turtle):
         self.newLoc()
         
     def newLoc(self):
-        rax=random.randint(-350,350)
-        ray=random.randint(-350,350)
+        rax=random.randint(-280,290)
+        ray=random.randint(-290,290)
         self.goto(rax,ray)
     

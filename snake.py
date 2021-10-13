@@ -1,13 +1,16 @@
 
 
 
-from turtle import Screen, Turtle, tiltangle
+from turtle import Screen, Turtle, distance, tiltangle
 from snakeMove import Snake
+from scoreboard import Score
 import time
 from food import Food
 
 s=Screen()
-s.setup(height=700,width=700)
+handW=600
+
+s.setup(height=handW,width=handW)
 s.bgcolor('black')
 s.title('sonake')
 s.tracer(0)
@@ -16,6 +19,7 @@ totalTail=3
 
 snake=Snake(totalTail)
 food=Food()
+score=Score()
 
 s.listen()
 s.onkey(snake.up,"Up")
@@ -25,10 +29,14 @@ s.onkey(snake.left,"Left")
 
 
 gamOn=True
-
+deadLim=(handW//2)-5
 while gamOn:
+
+
+    if snake.head.xcor() >deadLim or snake.head.xcor() <-deadLim or snake.head.ycor() >deadLim or snake.head.ycor() <-deadLim :
+        score.gameOver()
+        gamOn=False
     s.update()
-    # snake.randomFood()
     time.sleep(.089)
     snake.move()
 
@@ -36,7 +44,15 @@ while gamOn:
         food.newLoc()
         totalTail+=1
         snake.newHead( totalTail)
-
+        score.incre()
+    for seg in snake.snls:
+        if seg==snake.head:
+            pass
+        elif snake.head.distance(seg)<10:
+            score.gameOver()
+            gamOn=False
+            
+    
 
 
 
